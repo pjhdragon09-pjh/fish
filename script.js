@@ -306,6 +306,26 @@ function animate() {
         ctx.strokeRect(canvas.width / 2 - 200, canvas.height / 2 - 140, 400, 270);
 
         ctx.font = "65px sans-serif";
+        ctx.font = "bold 24px sans-serif";
+        ctx.fillText(종류: ${caughtFishInfo.name}, canvas.width / 2, canvas.height / 2 - 5);
+        ctx.font = "18px sans-serif";
+        ctx.fillStyle = "#e0f7fa";
+        ctx.fillText(체장(길이): ${caughtFishInfo.length} cm, canvas.width / 2, canvas.height / 2 + 25);ctx.fillText(중량(무게): ${caughtFishInfo.weight} kg, canvas.width / 2, canvas.height / 2 + 50);
+        if (caughtFishInfo.isPerfect) {
+            ctx.fillStyle = "#ff5252";ctx.font = "bold 16px sans-serif";
+            ctx.fillText("⚡ PERFECT TIMING! (점수 2배) ⚡", canvas.width / 2, canvas.height / 2 + 75);
+                                      
+        } else {
+            ctx.fillStyle = "#ffeb3b";
+        }
+        const currentBonus = Math.floor(caughtFishInfo.score * (stats.combo - 1) * 0.1);
+        ctx.font = "18px sans-serif";
+        ctx.fillText(획득 점수: +${caughtFishInfo.score + currentBonus} pt, canvas.width / 2, canvas.height / 2 + (caughtFishInfo.isPerfect ? 100 : 85));
+        ctx.font = "13px sans-serif";ctx.fillStyle = "#80deea";
+        ctx.fillText("다시 하려면 화면을 클릭하세요.", canvas.width / 2, canvas.height / 2 + 120);
+        ctx.textAlign = "left";}ctx.restore();
+}
+animate();
         ctx.textAlign = "center";
         ctx.fillText(caughtFishInfo.emoji, canvas.width / 2, canvas.height / 2 - 60);
 
